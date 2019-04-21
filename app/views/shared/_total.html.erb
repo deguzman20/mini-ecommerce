@@ -1,0 +1,26 @@
+ <table class="table">
+  <% cart_product.each do |cp| %>
+	<tr>
+		<td>
+		  <%= image_tag cp.product.image.url, width: '70', class: 'img img-thumbnail' %>  
+		</td>
+		<td>
+		  <br><%= cp.product.name %>  
+		</td>
+		<td>
+		  <br><%= cp.quantity %>
+		</td>
+		<td>
+		  <br><b>₱ <%= number_with_precision((cp.product.price * cp.quantity), :precision => 0, :delimiter => ',')%></b> 	 
+		</td>
+	</tr>
+  <% end %>	
+  <tr>
+  	<td colspan="3">
+  	  <span>Subtotal</span>	
+  	</td>
+  	<td>
+  	  <h4>₱ <%= number_with_precision((sub_total), :precision => 0, :delimiter => ',')%></h4>	
+  	</td>
+  </tr>
+ </table>

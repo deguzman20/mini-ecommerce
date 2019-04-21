@@ -1,0 +1,23 @@
+<div class="container">
+	  <div class="row">
+		  	<div class="col-md-8">
+		  	 <br>	
+		 	 <h3>Power Life</h3>
+			</div>
+			<div class="col-md-4">
+			  <br><br><br><br>
+			  <%= render 'shared/total', cart_product: @cart_product, sub_total: @sub_total %>	
+			</div>
+			<div class="col-md-12" style="position:relative;top:-190px;">
+			  <span style="color:silver">Customer information ></span>
+			  <span style="color:black">Shipping Method ></span>
+			  <span style="color:silver">Payment Method</span>	
+			</div>	
+			<div class="col-md-12" style="position:relative;top:-190px"	>
+	           <%= @customer_shipping_address.address %>,  <%= @customer_shipping_address.apartment %>,  <%= @customer_shipping_address.postal_code %>,  <%= @customer_shipping_address.city %>, <%= @customer_shipping_address.country %>
+             
+			</div>
+		
+	  </div>
+</div>	
+<%= javascript_include_tag 'store-front/payment-method.js' %>

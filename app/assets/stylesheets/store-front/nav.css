@@ -1,0 +1,23 @@
+nav{
+	background-color: #31383d;
+}
+
+.btn-sign-up{
+	background-color:rgb(227, 97, 46);
+}
+
+.btn-sign-in,
+.btn-close{
+	background-color:black;
+}
+
+.btn-sign-in:hover,
+.btn-sign-up:hover{
+	color:white;
+}
+
+
+.login-header,
+.register-header{
+	background-color:orange;
+}

@@ -1,0 +1,81 @@
+<div class="container">
+	  <div class="row">
+		  	<div class="col-md-8">
+		  	 <br>	
+		 	 <h3>Power Life</h3>
+			</div>
+			<div class="col-md-4">
+			  <br><br><br><br>
+			  <%= render 'shared/total', cart_product: @cart_product, sub_total: @sub_total %>	
+			</div>
+			<div class="col-md-12" style="position:relative;top:-190px;">
+			  <span style="color:black">Customer information ></span>
+			  <span style="color:silver">Shipping Method ></span>
+			  <span style="color:silver">Payment Method</span>	
+			</div>	
+			<div class="col-md-12" style="position:relative;top:-190px"	>
+				  <div class="col-md-8">
+				  	<button class="btn btn-info">Paypal Express</button>
+				  </div>	
+			  
+				  <div class="col-md-12">
+				  	<br>
+				  	<h3>Contact Information</h3>
+				  </div>
+				  
+				  <div class="col-md-8">
+				  	 <input type="text" class="form-control">
+				  </div>
+			  
+				  <div class="col-md-12">
+				  	<br>
+				  	<h3>Shipping address</h3>
+				  </div>
+				  
+				  <div class="col-md-12">
+					<div class="row">
+					    <div class="col-md-4">
+					      <input type="text" class="form-control" id="fname" placeholder="Firstname (optional)" />
+					    </div>
+					    <div class="col-md-4">
+					      <input type="text" class="form-control" id="lname" placeholder="Lastname" />
+					    </div>
+					    <div class="col-md-8">
+					      <br>
+					      <input type="text" class="form-control" id="address" placeholder="Address" />
+					    </div>
+					    <div class="col-md-8">
+					      <br>
+					      <input type="text" class="form-control" id="apartment" placeholder="Apartment, suite, etc. (optional)" />
+					    </div>
+					    <div class="col-md-8">
+					      <br>
+					      <input type="text" class="form-control" id="city" placeholder="City" />
+					    </div>
+					    <div class="col-md-4"></div>
+					    <div class="col-md-4">
+					      <br>
+					      <select id="country" class="form-control">
+					      	<option>Phillippines</option>
+					      </select>
+					    </div>
+					    <div class="col-md-4">
+					      <br>
+					      <input type="text" class="form-control" id="postal" placeholder="Postal code" />
+					    </div>
+					</div>
+				  </div>
+			</div>
+			<div class="col-md-8" style="position:relative;top:-180px;">
+			    <div class="custom-control custom-checkbox">
+				  &nbsp;<input type="checkbox" class="custom-control-input" id="save_this_info" checked>
+				  <label class="custom-control-label" for="save_this_info">Save this information for next time</label>
+				</div>
+			</div>
+			<div class="col-md-8" style="position:relative;top:-180px;">
+				<button class="btn btn-primary" style="position:relative;left:62%" id="continue_to_shipping_method">Continue to Shipping Method</button>
+			</div>
+	  </div>
+</div>	
+
+<%= javascript_include_tag 'store-front/payment-method.js' %>

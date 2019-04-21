@@ -1,0 +1,96 @@
+<div class="col-md-12 mb-5">
+
+          <div class="card">
+            <div class="card-body">
+              <!-- Shopping Cart table -->
+              <div class="table-responsive">
+                <table id="shopping" class="table product-table">
+                  <!-- Table head -->
+                  <thead class="mdb-color thead-res lighten-5">
+                    <tr>
+                      <th></th>
+                      <th class="font-weight-bold">
+                        <strong>Product</strong>
+                      </th>
+                      <th></th>
+                      <th class="font-weight-bold">
+                        <strong>Price</strong>
+                      </th>
+                      <th class="font-weight-bold">
+                        <strong>QTY</strong>
+                      </th>
+                      <th class="font-weight-bold">
+                        <strong>Amount</strong>
+                      </th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody class="tbody-res">
+                    <% @cart_products.each do |cart_product| %> 
+                      <tr id="row-<%= cart_product.id %>">
+                        <th scope="row">
+                          <%= image_tag cart_product.product.image.url, class: 'img-fluid z-depth-0' %>
+                        </th>
+                        <td>
+                          <h5 class="mt-3">
+                            <strong><%= cart_product.product.name %></strong>
+                          </h5>
+                        </td>
+                        <td></td>
+                        <td>
+                          <span id="price-<%= cart_product.id %>"  class="<%= cart_product.product.price %>">
+                            <%= number_to_currency(cart_product.product.price, :unit => "₱", :separator => ".", :delimiter => ",") %>
+                          </span>  
+                        </td>
+                        <td class="center-on-small-only">
+                          <div class="btn-group radio-group ml-2" data-toggle="buttons">
+                            <label class="btn btn-sm btn-primary btn-rounded waves-effect waves-light" id="quantity-minus-<%= cart_product.id %>">
+                              <input type="radio" name="options">—
+                            </label>
+                            <input type="text" value="<%= cart_product.quantity %>" id="quantity-<%= cart_product.id %>" class="form-control" disabled="disabled" style="width:40px"> 
+                            <label class="btn btn-sm btn-primary btn-rounded waves-effect waves-light active" id="quantity-plus-<%= cart_product.id %>">
+                              <input type="radio" name="options">+
+                            </label>
+                          </div>
+                        </td>
+                        <td class="font-weight-bold">
+                          <strong><span id="amount-<%= cart_product.id %>"></span></strong>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove item" id="delete-<%= cart_product.id %>">X
+                          </button>
+                        </td>
+                      </tr>
+                    <% end %>  
+                      <tr>
+                        <td colspan="3"></td>
+                        <td>
+                          <h4 class="mt-2">
+                            <strong>Total</strong>
+                          </h4>
+                        </td>
+                        <td class="text-right">
+                          <h4 class="mt-2">
+                            <strong> ₱ <span id="txt-subtotal"></span></strong>
+                          </h4>
+                        </td>
+                        <td colspan="3" class="text-right">
+                          <div class="btn-group">
+                              <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light" id="checkout">Complete purchase
+                               <i class="fas fa-angle-right right"></i>
+                               </button>
+                               <%= link_to 'paypal', paypal_path, class: 'btn btn-rounded waves-effect waves-light' %>
+                          </div>
+                        </td>
+                      </tr>
+           
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.Shopping Cart table -->
+            </div>
+          </div>
+
+        </div>
+
+<%= javascript_include_tag 'store-front/cart.js' %>

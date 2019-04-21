@@ -1,0 +1,40 @@
+<div class="container">
+	<!-- Section: Magazine v.2 -->
+<section class="magazine-section my-5">
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-lg-6 col-md-12">
+
+      <!-- Featured news -->
+      <div class="single-news mb-lg-0 mb-4">
+
+ 
+        <!-- Data -->
+        <div class="news-data d-flex justify-content-between">
+          
+
+        </div>
+
+        <!-- Excerpt -->
+        <h3 class="font-weight-bold dark-grey-text mb-3">
+        	<%= link_to @announcement.title, nil , class: 'text-dark'%>
+        </h3>
+                  <p class="font-weight-bold dark-grey-text text-right"><i class="fas fa-clock-o pr-2"></i><%= @announcement.date.strftime("%B %d, %Y") %></p>
+        <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">
+          <%= @announcement.content %>	
+        </p>
+
+      </div>
+      <!-- Featured news -->
+
+    </div>
+ 
+  </div>
+  <!-- Grid row -->
+
+</section>
+<!-- Section: Magazine v.2 -->
+</div>

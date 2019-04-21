@@ -1,0 +1,267 @@
+<%= render 'shared/carousel' %>
+<div class="container">
+  <!-- Section: Products v.2 -->
+<section class="text-center my-5">
+
+  <!-- Grid row -->
+  <div class="row">
+    <% products.each do |product| %>
+     <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+      <!-- Card -->
+      <div class="card card-cascade wider card-ecommerce">
+        <!-- Card image -->
+        <div class="view view-cascade overlay">
+           <%= image_tag product.image_url , class: 'card-img-top' %>  
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center">
+          <!-- Category & Title -->
+          <a href="" class="text-muted">
+            <h5><%= product.name %></h5>
+          </a>
+          <!-- Description -->
+          <p class="card-text"><%= product.product_description %></p>
+          <!-- Card footer -->
+          <div class="card-footer px-1">
+            <span class="float-right">
+            	   <%= link_to "Learn More", product_path(product.id.to_i) , class: 'btn text-white btn-learn-more' %>
+            </span>
+          </div>
+        </div>
+        <!-- Card content -->
+      </div>
+      <!-- Card -->
+     </div>
+    <% end %>
+  </div>
+</section>
+<hr>
+<section class="text-center my-5">
+  <h3 class="h3-responsive font-weight-bold text-center my-5">PowerLife Products are Built for the Active and Mobile Filipino Lifestyle</h3>
+  <p class="grey-text text-center w-responsive mx-auto mb-5">Advance back-up charging solutions ideal for living and traveling in over 7,600 islands</p>
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-lg-6 col-md-6 mb-lg-0 mb-4">
+      <!-- Collection card -->
+      <div class="card collection-card z-depth-1-half">
+        <!-- Card image -->
+        <div class="view zoom">
+          <%= image_tag 'brownouts.jpg', class: 'img-fluid'  %>  
+          <div class="stripe dark">
+            <a>
+              <p>Brownouts/Blackouts
+                <i class="fas fa-angle-right"></i>
+              </p>
+            </a>
+          </div>
+        </div>
+        <!-- Card image -->
+      </div>
+      <!-- Collection card -->
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-lg-6 col-md-6 mb-lg-0 mb-4">
+      <!-- Collection card -->
+      <div class="card collection-card z-depth-1-half">
+        <!-- Card image -->
+        <div class="view zoom">
+          <%= image_tag 'disasters.jpg', class: 'img-fluid'  %>  
+          <div class="stripe dark">
+            <a>
+              <p>Emergency/Disasters
+                <i class="fas fa-angle-right"></i>
+              </p>
+            </a>
+          </div>
+        </div>
+        <!-- Card image -->
+      </div>
+      <!-- Collection card -->
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+      <!-- Collection card -->
+      <div class="card collection-card z-depth-1-half">
+        <!-- Card image -->
+        <div class="view zoom">
+          <%= image_tag 'camping.jpg', class: 'img-fluid'  %>  
+          <div class="stripe dark">
+            <a>
+              <p>Camping/Mountaineering
+                <i class="fas fa-angle-right"></i>
+              </p>
+            </a>
+          </div>
+        </div>
+        <!-- Card image -->
+      </div>
+      <!-- Collection card -->
+    </div>
+    <!-- Grid column -->
+
+    <!-- Fourth column -->
+    <div class="col-lg-6 col-md-6">
+      <!-- Collection card -->
+      <div class="card collection-card z-depth-1-half">
+        <!-- Card image -->
+        <div class="view zoom">
+           <%= image_tag 'devices.jpg', class: 'img-fluid'  %>  
+          <div class="stripe dark">
+            <a>
+              <p>Electronic Devices
+                <i class="fas fa-angle-right"></i>
+              </p>
+            </a>
+          </div>
+        </div>
+        <!-- Card image -->
+      </div>
+      <!-- Collection card -->
+    </div>
+    <!-- Fourth column -->
+
+  </div>
+  <!-- Grid row -->
+</section>
+<hr>
+   <h3 class="h3-responsive font-weight-bold text-center my-5">PRODUCT FEATURES</h3>
+   <p class="grey-text text-center w-responsive mx-auto mb-5">PowerLife products are built with the newest technology.</p> 
+	<section class="text-center my-5">
+	  <!-- Grid row -->
+	  <div class="row">
+	    <% product_features.each do |product_feature| %>
+		   <div class="col-lg-2 col-md-6 mb-lg-0 mb-4">
+		      <!-- Card -->
+		      <div class="card align-items-center" style="height:200px;">
+		        <!-- Card image -->
+		        <div class="view overlay">
+		          <br>  
+		          <%= image_tag product_feature.image_url, class: 'card-img-top'%>  
+		          <a>
+		            <div class="mask rgba-white-slight"></div>
+		          </a>
+		        </div>
+		        <!-- Card image -->
+		        <!-- Card content -->
+		        <div class="card-body text-center" style="position:absolute;top:100px">
+		          <!-- Category & Title -->
+		          <h5>
+		            <strong>
+		              <%= link_to product_feature.name, nil, class: 'dark-grey-text'%>
+		            </strong>
+		          </h5>
+		        </div>
+		        <!-- Card content -->
+		      </div>
+		      <!-- Card -->
+		   </div>
+        <% end %>
+	  </div>
+	</section>
+<hr>
+  <h3 class="h3-responsive font-weight-bold text-center my-5">PRODUCT COMPARISON</h3>
+  <p class="grey-text text-center w-responsive mx-auto mb-5">PowerLife products are in a new category of power generators/banks that is revolutionizing the market.</p>
+  <table class="table table-hover">
+	  <thead>
+	    <tr style="background-color:#31383d;color:white">
+	      <th scope="col" colspan="2"></th>
+	      <th scope="col">Gas-Powered Generators</th>
+	      <th scope="col">UPS</th>
+	      <th scope="col">Power Banks</th>
+	      <th scope="col">Powerlife</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td colspan="2">Portable</td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	    </tr>
+	    <tr>
+	      <td colspan="2">High Capacity</td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	    </tr>
+	    <tr>
+	      <td colspan="2">Environmental Friendly</td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	    </tr>
+	    <tr>
+	      <td colspan="2">Solar	Enabled</td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	    </tr>
+	    <tr>
+	      <td colspan="2">Quiet</td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	    </tr>
+	    <tr>
+	      <td colspan="2">Mobile Design</td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-times text-danger"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	      <td><i class="fas fa-check text-success"></i></td>
+	    </tr>
+	  </tbody>
+  </table>
+  <!-- Announcement -->
+  <hr>	
+	 <div class="row mx-1">
+	  <% announcements.each do |announcement|%> 
+	   <div class="col-lg-4 col-md-6 mb-4">
+		 <div class="card card-cascade wider">
+
+		          <!-- Card image -->
+		          <div class="view view-cascade gradient-card-header peach-gradient">
+
+		            <!-- Title -->
+		            <h5 class="card-header-title mb-3"><%= announcement.title %></h5>
+		            <!-- Text -->
+		            <p class="mb-0"><i class="fas fa-calendar mr-2"></i><%= announcement.date.strftime("%B %d, %Y") %></p>
+
+		          </div>
+
+		          <!-- Card content -->
+		          <div class="card-body card-body-cascade text-center">
+
+		            <!-- Text -->
+		            <p class="card-text">
+		              <%= truncate(announcement.content, :length =>100 , :omission => '...') %>	
+		            </p>
+		            <!-- Link -->
+		            <a href="#" class="orange-text d-flex flex-row-reverse p-2">
+		              <%= link_to '<h5 class="waves-effect waves-light text-dark">Read more<i class="fas fa-angle-double-right ml-2"></i></h5>'.html_safe, announcement_path(announcement.id) %>
+		            </a>
+
+		          </div>
+		          <!-- Card content -->
+		 </div>
+	   </div>
+	  <% end %>
+	 </div> 
+</div>
+<hr>
+<%= render 'shared/contact' %>
+<%= stylesheet_link_tag 'store-front/style.css' %>

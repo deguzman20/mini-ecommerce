@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  order_status_id: 1
+  paypal_transaction: MyString
+
+two:
+  customer_id: 1
+  order_status_id: 1
+  paypal_transaction: MyString
