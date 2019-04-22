@@ -7,6 +7,7 @@ class PagesController < ApplicationController
    @faqs          = @product.faqs 
    @tech_specs    = @product.technical_specifications
    @tect_spec_img = @product.technical_specification_image
+   @charging_capacities = ChargingCapacity.where(product_id:params[:id].to_i)
   end	
   
   def announcement
