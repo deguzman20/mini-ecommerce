@@ -4,4 +4,5 @@ class Product < ApplicationRecord
  has_many :faqs
  has_many :technical_specifications
  has_one :technical_specification_image
+ has_many :charging_capacity
 end
