@@ -1,7 +1,7 @@
 images = [
 	Rails.root + "app/assets/images/products/E500-product-display.png",
 	Rails.root + "app/assets/images/products/E75-product-display.png",
-	Rails.root + "app/assets/images/products/sp100-product-display_600x.png",
+	Rails.root + "app/assets/images/products/sp100-product-display_600x.png"
 ]
 
 Product.create([
