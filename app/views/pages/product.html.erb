@@ -78,7 +78,35 @@
       </div>
     </div>
     <div class="tab-pane fade" id="charging" role="tabpanel" aria-labelledby="charging-tab-classic">
-      <p>charging </p>
+     <div class="row"> 
+      <% @charging_capacities.each do |charging_capacity| %> 
+        <div class="col-lg-3 col-md-3 mb-lg-0 mb-4">
+          <div class="card card-cascade wider">
+                    <!-- Card image -->
+                    <div class="view view-cascade overlay">
+                      <br>
+                      <center>
+                        <%= image_tag charging_capacity.image_url, class: 'card-img-top', style: 'width:25%;'%>
+                      </center> 
+                      <br> 
+                      <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                      </a>
+                    </div>
+
+                    <!-- Card content -->
+                    <div class="card-body card-body-cascade text-center">
+
+                      <!-- Title -->
+                      <h4 class="card-title"><strong><%= charging_capacity.first_text %></strong></h4>
+                      <!-- Subtitle -->
+                      <h5 class="blue-text pb-2"><strong><%= charging_capacity.second_text %></strong></h5>
+                    </div>
+          </div>
+        </div>
+      <% end %>
+      <br>
+     </div>  
     </div>
     <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq">
       <% i = 0 %>  
