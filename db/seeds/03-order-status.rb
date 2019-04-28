@@ -3,35 +3,35 @@
 OrderStatus.create!([
 	{
 		# id: 1,
-		name: "Pending"
+		name: 'Pending'
 	},
 	{
 		# id: 2,
-		name: "Ready to Pack"
+		name: 'Ready to Pack'
 	},
 	{
 		# id: 3,
-		name: "Ready to Ship"
+		name: 'Ready to Ship'
 	},
 	{
 		# id: 4,
-		name: "Shipped"
+		name: 'Shipped'
 	},
 	{
 		# id: 5,
-		name: "Verified"
+		name: 'Verified'
 	},
 	{
 		# id: 6,
-		name: "Canceled"
+		name: 'Canceled'
 	},
 	{
 		# id: 7,
-		name: "Processing"
+		name: 'Processing'
 	},
 	{
 	 	# id: "8"
-		name: "Completed"
+		name: 'Completed'
 	}
 ])
 

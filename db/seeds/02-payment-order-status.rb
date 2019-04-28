@@ -1,9 +1,9 @@
 PaymentOrderStatus.create([
 	{
-       name: "Paid"
+       name: 'Paid'
 	},
 	{
-       name: "Not Paid"
+       name: 'Not Paid'
 	}
 ])
 pp 'payment order status created!'
