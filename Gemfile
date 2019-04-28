@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.3.1'
 
+gem 'geocoder'
+
+gem 'rubocop'
+
 gem "better_errors"
 
 # gem for paypal
