@@ -19,7 +19,7 @@ html::-webkit-scrollbar-thumb
 }
 
 footer{
-		background-color: #31383d;
+    background-color: #31383d;
 }
 .btn-learn-more {
 	background-color:rgb(227, 97, 46);
@@ -334,7 +334,7 @@ input[type="radio"] {
     opacity: 0;
 }
 
-tabs {
+.tabs {
     -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
     box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
     border: 0;
@@ -495,10 +495,30 @@ a {
     border-left: 1px solid #dee2e6!important;
 }
 .border-bottom {
-    border-bottom: 1px solid #dee2e6!important;
+  border-bottom: 1px solid #dee2e6!important;
 }
 .border-right {
-    border-right: 1px solid #dee2e6!important;
+  border-right: 1px solid #dee2e6!important;
 }
 
+.badge-orange{
+  background-color:rgb(227, 97, 46);
+}
 
+.tr-color{
+  background-color:rgb(227, 97, 46);
+  color:white;
+}
+.btn-view{
+ background-color: #31383d;  
+ color: white;
+}
+.btn-view:hover{
+ background-color: #31383d;  
+ color: white;
+}
+
+.tr-single-order-history{
+  background-color: #31383d;  
+  color: white;   
+}
