@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'announcement/:id', to: 'pages#announcement', as: :announcement
   get 'product/:id', to: 'pages#product', as: :product
+  get 'order_history', to: 'pages#order_history', as: :order_history
+  get 'order_product', to: 'pages#order_product'
   get 'contact_us', to: 'pages#contact_us'
   get 'add_to_cart', to: 'pages#add_to_cart'
+  get 'get_product', to: 'pages#get_product'
   get 'get_local_storage', to: 'pages#get_local_storage'
   get 'checkout_steps/get_local_storage', to: 'checkout_steps#get_local_storage'
   get 'cart',  to: 'pages#cart'
