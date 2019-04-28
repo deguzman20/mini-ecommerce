@@ -1,17 +1,17 @@
 class CartProduct < ApplicationRecord
-require 'paypal-sdk-rest'
-include PayPal::SDK::REST 
- belongs_to :cart, optional: true
- belongs_to :product
+  require 'paypal-sdk-rest'
+  include PayPal::SDK::REST 
+  belongs_to :cart, optional: true
+  belongs_to :product
 
 
  PayPal::SDK::REST.set_config(
   :mode => "sandbox", # "sandbox" or "live"
-  :client_id => "AcCp1ZKvcqBS3QxenYo8cI-PYrc2E8m07mIVqzTHj-yixNBkEK12LbSoptWDkKxPKb72-nkLCA93A7vD",
-  :client_secret => "ECnipckEVxtOwLlLzTdcvkfXA5zPF-wWIzJzlFXgZwNu6qIYtAJ2p2WtvL0e7U-76zFfPeBeJXbWIQOO")
+  :client_id => "AYjZT2tas5_xjKODvKSW1DEXVieC0wn4EWR4H_bn7vfP4PwdjTlY5kjL640PZgRhrWbk71Fy62tO87IJ",
+  :client_secret => "EDuYKlUbkwgH8wGLetN0Gk6a0l4BUBuCFqh0JIvuXavIKBrewa5G5AAA7vbPpe_xd08GWfzSSvSuO9BX")
 
   def paypal_url(cart_product , url)
-
+           
         @url = url
         itemlist = []
         @total = []
@@ -24,8 +24,8 @@ include PayPal::SDK::REST
              Product.where(id:@id).each_with_index do |prod,index|
           
 		          itemlist << {:name=>"#{prod.name}", 
-		           :price=>"#{@price}",
-		           :currency=>'USD',
+		             :price=>"#{@price}",
+		           :currency=>'PHP',
 		           :quantity=>"#{@quantity}"
 
 		          }
@@ -49,19 +49,32 @@ include PayPal::SDK::REST
           :return_url => "#{@url}/execute",
           :cancel_url => "#{@url}/cart" },
         :transactions =>  [{
-          :item_list => {
-            :items => itemlist },
-          :amount =>  {
-            :total => @grand_total.to_s ,
-            :currency =>  "USD" },
-          :description =>  "This is the payment transaction description." }]})
-
+             :item_list => {
+             :items => itemlist },
+             :amount =>  {
+             :total => @grand_total.to_s ,
+             :currency =>  "PHP" },
+             :description =>  'This is the payment transaction description.' }]})
       if @payment.create
         @redirect_url = @payment.links.find{|v| v.rel == "approval_url" }.href
-          else
-            logger.error @payment.error.inspect
-          end
- 
+      else
+        logger.error @payment.error.inspect
+      end
   end
  
 end
+
+
+  # # Credentials for Classic APIs
+  # app_id: APP-80W284485P519543T
+  # username: marvn.jimena-facilitator_api1.gmail.com
+  # password: QLV3K2XZLGWQP2H3
+  # signature: A9A0gZTWcGyirG.qnLuzNtP0Yj-IA5IeOJyTR7Ni6K.l.dBQqkq9Armq
+  # # # With Certificate
+  # # cert_path: "config/cert_key.pem"
+  # sandbox_email_address: Platform.sdk.seller@gmail.com
+
+  # # IP Address
+  # ip_address: 127.0.0.1
+  # # HTTP Proxy
+  # http_proxy: http://proxy-ipaddress:3129/
