@@ -15,6 +15,10 @@ $(function(){
           console.log(e)
         }
     };
+   
+   $("#checkout").click(function(){
+    window.location.href = "checkout_steps/customer_information";
+   });  
 
    $.ajax({
    	 url:'/get_sub_total',
@@ -31,23 +35,29 @@ $(function(){
      $(`#amount-${i}`).html(formatMoney(parseInt($(`#price-${i}`).attr('class')) * parseInt($(`#quantity-${i}`).val()))); 
    	 $(`#quantity-minus-${i}`).click(function(){
    	 	var id = this.id.replace("quantity-minus-","");
-         if($(`#quantity-${id}`).val()>1)
+         if($(`#quantity-${id}`).val()>1){
 	          $(`#quantity-${id}`).val(Number($(`#quantity-${id}`).val())-1);   
-  	     $.ajax({
-             url:"/decrease_product_quantity",
-             type:"GET",
-             data:{
-             	 cart_product_id: id
-             },
-             success:function(data){
-             	 $("#txt-subtotal").html(formatMoney(data));
-               $(`#amount-${id}`).html(formatMoney(parseInt($(`#price-${id}`).attr('class')) * parseInt($(`#quantity-${id}`).val()))); 
-             },
-             error:function(err){
-             	 console.log(err)
-             }
-  	     });         
+              $.ajax({
+                 url:"/decrease_product_quantity",
+                 type:"GET",
+                 data:{
+                   cart_product_id: id
+                 },
+                 success:function(data){
+                   $("#txt-subtotal").html(formatMoney(data));
+                   $(`#amount-${id}`).html(formatMoney(parseInt($(`#price-${id}`).attr('class')) * parseInt($(`#quantity-${id}`).val()))); 
+                 },
+                 error:function(err){
+                   console.log(err)
+                 }
+             });         
 
+         }
+         else{
+           return false;
+         }
+
+ 
    	 });
     
      $(`#quantity-plus-${i}`).click(function(){
@@ -72,7 +82,7 @@ $(function(){
 
    	 $(`#delete-${i}`).click(function(){
        var id = this.id.replace("delete-","");
-
+        $(`#row-${id}`).fadeOut();
         $.ajax({
           url:"/delete_cart_product",
           type:"GET",
