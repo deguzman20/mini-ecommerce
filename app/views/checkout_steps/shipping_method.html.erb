@@ -1,23 +1,56 @@
 <div class="container">
 	  <div class="row">
 		  	<div class="col-md-8">
-		  	 <br>	
-		 	 <h3>Power Life</h3>
+			  <!-- Horizontal Steppers -->
+						
+							  <div class="col-md-12 col-lg-12 ">
+							    <!-- Stepers Wrapper -->
+							    <ul class="stepper stepper-horizontal">
+							      <!-- First Step -->
+							      <li>
+							        <a href="#!">
+							          <span class="circle">1</span>
+							          <span class="label">Customer Info</span>
+							        </a>
+							      </li>
+
+							      <!-- Second Step -->
+							      <li class="active">
+							        <a href="#!">
+							          <span class="circle">2</span>
+							          <span class="label">Shipping Method</span>
+							        </a>
+							      </li>
+
+							      <!-- Third Step -->
+							      <li>
+							        <a href="#!">
+							          <span class="circle">3</span>
+							          <span class="label">Payment Method</span>
+							        </a>
+							      </li>
+							    </ul>
+							    <!-- /.Stepers Wrapper -->
+							  </div>
+							  <div class="col-md-6 col-lg-6">
+							    <!-- Stepers Wrapper -->
+							    <div class="card">
+								  <ul class="list-group list-group-flush">
+								    <li class="list-group-item">
+									    <div class="custom-control custom-radio">
+										  <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" checked>
+										  <label class="custom-control-label" for="defaultChecked">	Standard Shipping - NCR</label>
+										</div>
+								    </li>
+								  </ul>
+								</div>
+							    <!-- /.Stepers Wrapper -->
+							  </div>
 			</div>
 			<div class="col-md-4">
 			  <br><br><br><br>
-			  <%= render 'shared/total', cart_product: @cart_product, sub_total: @sub_total %>	
+			  <%= render 'shared/total', cart_product: @cart_product, sub_total: @sub_total, cart_quantity: @cart_quantity, additional:  @additional %>	
 			</div>
-			<div class="col-md-12" style="position:relative;top:-190px;">
-			  <span style="color:silver">Customer information ></span>
-			  <span style="color:black">Shipping Method ></span>
-			  <span style="color:silver">Payment Method</span>	
-			</div>	
-			<div class="col-md-12" style="position:relative;top:-190px"	>
-	           <%= @customer_shipping_address.address %>,  <%= @customer_shipping_address.apartment %>,  <%= @customer_shipping_address.postal_code %>,  <%= @customer_shipping_address.city %>, <%= @customer_shipping_address.country %>
-             
-			</div>
-		
 	  </div>
 </div>	
 <%= javascript_include_tag 'store-front/payment-method.js' %>
