@@ -18,4 +18,5 @@ Rails.application.config.assets.precompile += %w( store-front/cart.js )
 Rails.application.config.assets.precompile += %w( store-front/payment-method.js )
 Rails.application.config.assets.precompile += %w( store-front/contact-us.js )
 Rails.application.config.assets.precompile += %w( store-front/order-history.js )
+Rails.application.config.assets.precompile += %w( store-front/blog.js )
 
