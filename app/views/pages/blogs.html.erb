@@ -1,0 +1,55 @@
+<div class="container">
+	<!-- Section: Blog v.3 -->
+	<section class="my-5">
+    
+	  <!-- Section heading -->
+	  <h2 class="h1-responsive font-weight-bold text-center my-5">Blog</h2>
+		<% @blogs.each do |blog| %> 
+		  <!-- Grid row -->
+			  <div class="row">
+
+			    <!-- Grid column -->
+			    <div class="col-lg-5 col-xl-4">
+
+			      <!-- Featured image -->
+			      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+			        <%= image_tag blog.image_url, class: 'img img-thumbnail', style: 'width:100%;height:350px' %>
+			        <a>
+			          <div class="mask rgba-white-slight"></div>
+			        </a>
+			      </div>
+
+			    </div>
+			    <!-- Grid column -->
+
+			    <!-- Grid column -->
+			    <div class="col-lg-7 col-xl-8">
+
+			      <!-- Post title -->
+			      <h3 class="font-weight-bold mb-3"><strong><%= "#{blog.name} - #{blog.title}" %></strong></h3>
+			      <!-- Excerpt -->
+			    <!--   <p class="dark-grey-text">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit
+			        quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus
+			        et aut officiis debitis cum soluta nobis est eligendi placeat facere aut rerum.</p> -->
+			      <!-- Post data -->
+			      <p><%= blog.created_at %></p>
+                  <%= link_to 'View', blog_path(blog.id), class: 'btn btn-primary btn-md' %>
+			    </div>
+			    <!-- Grid column -->
+
+			  </div>
+		  <!-- Grid row -->
+
+		  <hr class="my-5">
+        <% end %> 
+
+	  <!-- Grid row -->
+	
+	    <!-- Grid column -->
+
+	  </div>
+	  <!-- Grid row -->
+
+	</section>
+<!-- Section: Blog v.3 -->
+</div>
