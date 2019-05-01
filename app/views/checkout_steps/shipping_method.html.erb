@@ -32,7 +32,42 @@
 							    </ul>
 							    <!-- /.Stepers Wrapper -->
 							  </div>
-							  <div class="col-md-6 col-lg-6">
+							  <div class="col-md-12 col-lg-12">
+							    <!-- Stepers Wrapper -->
+							    <div class="card">
+								  <ul class="list-group list-group-flush">
+								    <li class="list-group-item">
+                                      <div class="col-lg-4 col-md-4">
+                                        <label>Contact</label>	
+                                      </div>
+                                      <div class="col-lg-8 col-md-8">
+                                        <% unless @customer_shipping_address.nil? %>
+                                            <%= "#{@customer_shipping_address.email_address}" unless @customer_shipping_address.email_address.nil? %> 
+                                        <% end %>
+                                      </div>
+								    </li>
+								    <li class="list-group-item">
+                                      <div class="col-lg-4 col-md-4">
+                                      	<label>Ship to</label>	
+                                      </div>
+                                      <div class="col-lg-8 col-md-8">
+                                        <% unless @customer_shipping_address.nil? %>
+                                            <%= "#{@customer_shipping_address.address}," unless @customer_shipping_address.address.nil? %>
+                                            <%= "#{@customer_shipping_address.apartment}," unless @customer_shipping_address.apartment.nil? %> 
+                                            <%= "#{@customer_shipping_address.address}," unless @customer_shipping_address.address.nil? %>
+                                            <%= "#{@customer_shipping_address.country}" unless @customer_shipping_address.country.nil? %>  
+                                      	<% end %> 	
+                                      </div>
+								    </li>
+								  </ul>
+								</div>
+							    <!-- /.Stepers Wrapper -->
+							  </div>
+                              <div class="col-md-12">
+                              	<br>
+                              	<h4>Shipping Adrress</h4>
+                              </div>
+							  <div class="col-md-12 col-lg-12">
 							    <!-- Stepers Wrapper -->
 							    <div class="card">
 								  <ul class="list-group list-group-flush">
@@ -46,11 +81,17 @@
 								</div>
 							    <!-- /.Stepers Wrapper -->
 							  </div>
+							  <br>
+							  <div class="col-md-8 col-lg-8">
+								<button class="btn btn-primary" id="continue_to_payment_method">Continue to Payment Method</button>
+							  </div>
+							  <br>
 			</div>
 			<div class="col-md-4">
 			  <br><br><br><br>
 			  <%= render 'shared/total', cart_product: @cart_product, sub_total: @sub_total, cart_quantity: @cart_quantity, additional:  @additional %>	
 			</div>
+
 	  </div>
 </div>	
 <%= javascript_include_tag 'store-front/payment-method.js' %>

@@ -1,2 +1,157 @@
-<h1>Payment Method</h1>
+<div class="container">
+	  <div class="row">
+		  	<div class="col-md-8">
+			  <!-- Horizontal Steppers -->
+						
+							  <div class="col-md-12 col-lg-12 ">
+							    <!-- Stepers Wrapper -->
+							    <ul class="stepper stepper-horizontal">
+							      <!-- First Step -->
+							      <li>
+							        <a href="#!">
+							          <span class="circle">1</span>
+							          <span class="label">Customer Info</span>
+							        </a>
+							      </li>
+
+							      <!-- Second Step -->
+							      <li>
+							        <a href="#!">
+							          <span class="circle">2</span>
+							          <span class="label">Shipping Method</span>
+							        </a>
+							      </li>
+
+							      <!-- Third Step -->
+							      <li class="active">
+							        <a href="#!">
+							          <span class="circle">3</span>
+							          <span class="label">Payment Method</span>
+							        </a>
+							      </li>
+							    </ul>
+							    <!-- /.Stepers Wrapper -->
+							  </div>
+							  <div class="col-md-12 col-lg-12">
+							    <!-- Stepers Wrapper -->
+							    <div class="card">
+								  <ul class="list-group list-group-flush">
+								    <li class="list-group-item">
+                                      <div class="col-lg-4 col-md-4">
+                                        <label>Contact</label>	
+                                      </div>
+                                      <div class="col-lg-8 col-md-8">
+                                        <% unless @customer_shipping_address.nil? %>
+                                            <%= "#{@customer_shipping_address.email_address}" unless @customer_shipping_address.email_address.nil? %> 
+                                        <% end %>
+                                      </div>
+								    </li>
+								    <li class="list-group-item">
+                                      <div class="col-lg-4 col-md-4">
+                                      	<label>Ship to</label>	
+                                      </div>
+                                      <div class="col-lg-8 col-md-8">
+                                        <% unless @customer_shipping_address.nil? %>
+                                            <%= "#{@customer_shipping_address.address}," unless @customer_shipping_address.address.nil? %>
+                                            <%= "#{@customer_shipping_address.apartment}," unless @customer_shipping_address.apartment.nil? %> 
+                                            <%= "#{@customer_shipping_address.address}," unless @customer_shipping_address.address.nil? %>
+                                            <%= "#{@customer_shipping_address.country}" unless @customer_shipping_address.country.nil? %>  
+                                      	<% end %> 	
+                                      </div>
+								    </li>
+								    <li class="list-group-item">
+                                      <div class="col-lg-4 col-md-4">
+                                        <label>Method</label>	
+                                      </div>
+                                      <div class="col-lg-8 col-md-8">
+                                        <label>Standard Shipping - NCR</label>
+                                      </div>
+								    </li>
+								  </ul>
+								</div>
+							    <!-- /.Stepers Wrapper -->
+							  </div>
+                              <div class="col-md-12">
+                              	<br>
+                              	<h4>Shipping Adrress</h4>
+                              </div>
+							  <div class="col-md-12 col-lg-12">
+							    <!-- Stepers Wrapper -->
+							    <div class="card">
+								  <ul class="list-group list-group-flush">
+								    <li class="list-group-item">
+									   <div class="custom-control custom-radio">
+										  <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" checked>
+										  <label class="custom-control-label" for="defaultChecked">Standard Shipping - NCR</label>
+										</div>
+								    </li>
+								    <li class="list-group-item">
+									   <div class="custom-control custom-radio">
+										  <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+										  <label class="custom-control-label" for="defaultUnchecked">Use a different billing address</label>
+										</div>
+								    </li>
+								    <li class="list-group-item" id="billing-address">
+                                       <div class="row">
+                                       	   <div class="col-lg-6 col-md-6">
+	                                       	 <div class="md-form">
+											  <input type="text" id="fname" class="form-control">
+											  <label for="fname">Firstname</label>
+											 </div>
+	                                       </div>
+	                                       <div class="col-lg-6 col-md-6">
+	                                       	 <div class="md-form">
+											  <input type="text" id="lname" class="form-control">
+											  <label for="lname">Lastname</label>
+											 </div>
+	                                       </div>
+	                                       <div class="col-lg-12 col-md-12">
+	                                       	 <div class="md-form">
+											  <input type="text" id="address" class="form-control">
+											  <label for="address">Address</label>
+											 </div>
+	                                       </div>
+	                                       <div class="col-md-12 col-lg-12">
+										     	<div class="md-form">
+												  <input type="text" id="apartment" class="form-control">
+												  <label for="apartment">Apartment, suite, etc. (optional)</label>
+												</div>
+										   </div>
+										   <div class="col-md-12 col-lg-12">
+										     	<div class="md-form">
+												  <input type="text" id="billing_city" class="form-control" placeholder="">
+												  <label for="apartment">City</label>
+												</div>
+										   </div>
+										   <div class="col-md-6 col-lg-6">
+										   	 <br>
+										      <select id="country" class="form-control">
+										      	<option>Phillippines</option>
+										      </select>
+										   </div>
+										   <div class="col-md-6 col-lg-6">
+										        <div class="md-form">
+												  <input type="text" id="postal" class="form-control">
+												  <label for="postal">Postal Code</label>
+												</div>
+										    </div>
+                                       </div>
+								    </li>	
+								  </ul>
+								</div>
+							    <!-- /.Stepers Wrapper -->
+							  </div>
+							  <br>
+							  <div class="col-md-8 col-lg-8">
+								<%= link_to '<button class="btn btn-primary" id="complete_order">Complete Order</button>'.html_safe, paypal_path %>
+							  </div>
+							  <br>
+			</div>
+			<div class="col-md-4">
+			  <br><br><br><br>
+			  <%= render 'shared/total', cart_product: @cart_product, sub_total: @sub_total, cart_quantity: @cart_quantity, additional:  @additional %>	
+			</div>
+
+	  </div>
+</div>	
 <%= javascript_include_tag 'store-front/payment-method.js' %>
