@@ -2,13 +2,22 @@ class CheckoutStepsController < ApplicationController
   include Wicked::Wizard
   steps :customer_information, :shipping_method, :payment_method
   $additional
+  
+  def get_city(city)
+    $city = city
+  end 
+
+  def additional_fee(additional, city_code, total_weight)    
+    $additional, $city_code, $total_weight = additional, city_code, total_weight
+  end
+
   def get_local_storage
     decoded_hash = JWT.decode(params[:auth_token], Rails.application.secrets.secret_key_base)
     decoded_hash[0].each { |customer_id| $customer_id = customer_id[1] }
   end
   
   def continue_to_shipping_method
-    if params[:is_save_info_checked] == "true"
+    if params[:is_save_info_checked] == 'true'
        customer_shipping_address = CustomerShippingAddress.new
        customer_shipping_address.email_address = params[:email]
        customer_shipping_address.first_name = params[:fname]
@@ -36,13 +45,72 @@ class CheckoutStepsController < ApplicationController
        render json: 'shipping address saved successfuly'.to_json  if customer_shipping_address.save!
     end 
   end 
-  
-  def get_city(city)
-    $city = city
-  end 
 
-  def additional_fee(additional, city_code, total_weight)    
-    $additional, $city_code, $total_weight = additional, city_code, total_weight
+  def complete_order
+    if params[:standard_shipping] == 'false'
+       customer_shipping_address = CustomerShippingAddress.new
+       customer_shipping_address.first_name = params[:fname]
+       customer_shipping_address.first_name = params[:lname]
+       customer_shipping_address.customer_id = $customer_id.to_i
+       customer_shipping_address.address = params[:address]
+       customer_shipping_address.apartment = params[:apartment]
+       customer_shipping_address.city = params[:city]
+       customer_shipping_address.country = params[:country]
+       customer_shipping_address.postal_code = params[:postal]
+       customer_shipping_address.is_save_info = true
+       customer_shipping_address.save!
+    end  
+    render json: params.to_json
+  end
+  
+    def redirect_to_paypal
+    cart_product = CartProduct.new
+    cart = Cart.find_by_customer_id($customer_id.to_i)
+    cart_products = CartProduct.where(cart_id:cart.id)
+    base_url = request.base_url
+    redirect_to cart_product.paypal_url($additional.to_i, cart_products, base_url)
+  end  
+
+  def execute
+    payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
+    transactions = payment.links.find{|v| v.rel == 'approval_url'}
+    if payment.execute(payer_id: params[:PayerID])
+        subtotal = 0
+        # get the cart of current user
+        cart = Cart.find_by_customer_id($customer_id.to_i)
+        
+        # get the sub total of all product for the specific customer in cart
+        CartProduct.where(cart_id: cart.id).each { |cart_product| 
+                                                    subtotal += cart_product.product.price * cart_product.quantity  }
+
+        #shipping_address = JSON.parse(payment.to_json)["payer"]["payer_info"]["shipping_address"]
+        transaction_id = JSON.parse(payment.to_json)['transactions'][0]['related_resources'][0]['sale']['id']
+        customer_shipping_address = CustomerShippingAddress.find_by_customer_id($customer_id.to_i).last
+        # create new order
+        order = Order.new
+        order.total = subtotal
+        order.customer_id = $customer_id
+        order.payment_order_status_id = 1
+        order.customer_shipping_address_id = customer_shipping_address.id
+        order.paypal_transaction = transaction_id
+          if order.save
+           cart = Cart.find_by_customer_id($customer_id.to_i)
+            CartProduct.where(cart_id:cart.id).each do |cp| 
+               cp_subtotal = 0
+               cp_subtotal += cp.product.price * cp.quantity
+               order_product = OrderProduct.new
+               order_product.order_id = order.id
+               order_product.product_id = cp.product_id 
+               order_product.sub_total = cp_subtotal
+               order_product.save
+            end    
+        end
+
+        # redirect to the cart page if paypal was success
+        redirect_to transactions.href.to_s
+    else
+      payment.error # Error Hash
+    end
   end
   
   def show
@@ -60,13 +128,11 @@ class CheckoutStepsController < ApplicationController
     pp 'customer information'
     when :shipping_method
     @customer_shipping_address = CustomerShippingAddress.where(customer_id: $customer_id).last
-    pp 'additional'
-    pp $city_code
-    pp $total_weight.to_i
-    pp @additional = $additional
+    @additional = $additional
     when :payment_method
     @city = $city unless $city.nil? 
-    pp 'payment method'
+    @customer_shipping_address = CustomerShippingAddress.where(customer_id: $customer_id).last
+    @additional = $additional
     else   	 		
     end	
     render_wizard
