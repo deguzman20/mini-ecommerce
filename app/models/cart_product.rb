@@ -10,7 +10,7 @@ class CartProduct < ApplicationRecord
   :client_id => "AYjZT2tas5_xjKODvKSW1DEXVieC0wn4EWR4H_bn7vfP4PwdjTlY5kjL640PZgRhrWbk71Fy62tO87IJ",
   :client_secret => "EDuYKlUbkwgH8wGLetN0Gk6a0l4BUBuCFqh0JIvuXavIKBrewa5G5AAA7vbPpe_xd08GWfzSSvSuO9BX")
 
-  def paypal_url(cart_product , url)
+  def paypal_url(additional, cart_product , url)
            
         @url = url
         itemlist = []
@@ -23,13 +23,19 @@ class CartProduct < ApplicationRecord
             @index+=1
              Product.where(id:@id).each_with_index do |prod,index|
           
-		          itemlist << {:name=>"#{prod.name}", 
-		             :price=>"#{@price}",
-		           :currency=>'PHP',
-		           :quantity=>"#{@quantity}"
-
+		          itemlist << {
+                 name: "#{prod.name}", 
+		             price: "#{@price}",
+		             currency: 'PHP',
+		             quantity: "#{@quantity}"              
 		          }
             end
+              itemlist << {
+                 name: 'Shipping Fee',
+                 price: additional,
+                 currency: 'PHP',
+                 quantity: 1
+              }
         end
 
         itemlist.each do |items|
