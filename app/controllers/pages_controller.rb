@@ -57,7 +57,25 @@ class PagesController < ApplicationController
     cart = Cart.find_by_customer_id($customer_id.to_i)
     @cart_products = CartProduct.where(cart_id: cart.id)  
   end
-  
+
+  def blogs
+    @blogs = Blog.all
+  end
+
+  def blog
+    @blog = Blog.find(params[:id])
+  end 
+
+  def reply 
+    reply_blog = ReplyBlog.new
+    reply_blog.blog_id =  params[:blog_id].to_i
+    reply_blog.name = params[:name]
+    reply_blog.email = params[:email]
+    reply_blog.comment = params[:comment]
+    reply_blog.website = params[:website]
+    render json: "reply sent successfuly".to_json  if reply_blog.save!
+  end
+
   def contact_us 
     contact = ContactU.new
     contact.name = params[:name]
@@ -98,60 +116,6 @@ class PagesController < ApplicationController
                                                 subtotal += cart_product.product.price * cart_product.quantity  }
     render json: subtotal.to_json
   end	
-  
-  def redirect_to_paypal
-    cart_product = CartProduct.new
-    cart = Cart.find_by_customer_id($customer_id.to_i)
-    cart_products = CartProduct.where(cart_id:cart.id)
-    base_url = request.base_url
-    redirect_to cart_product.paypal_url(cart_products ,base_url )
-  end  
-
-  def execute
-    payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
-    transactions = payment.links.find{|v| v.rel == 'approval_url'}
-    if payment.execute(payer_id: params[:PayerID])
-        subtotal = 0
-        # get the cart of current user
-        cart = Cart.find_by_customer_id($customer_id.to_i)
-        
-        # get the sub total of all product for the specific customer in cart
-        CartProduct.where(cart_id: cart.id).each { |cart_product| 
-                                                    subtotal += cart_product.product.price * cart_product.quantity  }
-        transaction_id = JSON.parse(payment.to_json)['transactions'][0]['related_resources'][0]['sale']['id']
-        shipping_address = JSON.parse(payment.to_json)["payer"]["payer_info"]["shipping_address"]
-        # create new order
-        order = Order.new
-        order.total = subtotal
-        order.customer_id = $customer_id
-        order.payment_order_status_id = 1
-        order.paypal_transaction = transaction_id
-        if order.save
-           cart = Cart.find_by_customer_id($customer_id.to_i)
-            CartProduct.where(cart_id:cart.id).each do |cp| 
-               cp_subtotal = 0
-               cp_subtotal += cp.product.price * cp.quantity
-               order_product = OrderProduct.new
-               order_product.order_id = order.id
-               order_product.product_id = cp.product_id 
-               order_product.sub_total = cp_subtotal
-               order_product.save
-            end    
-          
-            customer_shipping_address = CustomerShippingAddress.new
-            customer_shipping_address.customer_id = $customer_id
-            customer_shipping_address.city = shipping_address["city"]
-            customer_shipping_address.postal_code = shipping_address["postal_code"]
-            customer_shipping_address.is_save_info = true
-            customer_shipping_address.save!
-        end
-
-        # redirect to the cart page if paypal was success
-        redirect_to transactions.href.to_s
-    else
-      payment.error # Error Hash
-    end
-  end
  
 end
   
