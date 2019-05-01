@@ -1,5 +1,4 @@
 $(function(){
-    
     function formatMoney(amount, decimalCount = 2, thousands = ",") {
         try {
           decimalCount = Math.abs(decimalCount);
@@ -16,8 +15,12 @@ $(function(){
         }
     };
    
+   $("#continue_shopping").click(function(){
+     window.location.href= "product/1";
+   });
+
    $("#checkout").click(function(){
-    window.location.href = "checkout_steps/customer_information";
+     window.location.href = "checkout_steps/customer_information";
    });  
 
    $.ajax({
@@ -148,7 +151,8 @@ $(function(){
        });
     }
     else{
-      alert("you need to login");
+      alertify.set('notifier','position', 'bottom-left');
+      alertify.error('you need to login first');
     } 
 	});
 });

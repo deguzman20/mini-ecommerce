@@ -21,3 +21,7 @@ nav{
 .register-header{
 	background-color:orange;
 }
+
+a[class="dropdown-item"]:hover{
+	color:grey;
+}

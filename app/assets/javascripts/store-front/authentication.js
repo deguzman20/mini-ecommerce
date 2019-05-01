@@ -25,11 +25,16 @@ $(function(){
        dataType:"JSON",
         success:function(data){
           if(data !== null){
-            localStorage.setItem('auth_token',data);
-            document.location.reload();
+            localStorage.setItem('auth_token',data); 
+            alertify.set('notifier','position', 'top-left');
+            alertify.success('Sign In Succesfully');
+            setTimeout(function(){ 
+               document.location.reload(); 
+            }, 3000);
           }
-          else{
-            console.log('invalid email and password');
+          else {
+              alertify.set('notifier','position', 'top-left');
+              alertify.error('Incorrect Email and Password'); 
           }
         },
         error:function(err){
@@ -51,6 +56,9 @@ $(function(){
            data:dataString,
            dataType:"JSON",
             success:function(data){
+              $("#signUpModal").modal("hide");
+              alertify.set('notifier','position', 'top-left');
+              alertify.success('Sign Up succesfully'); 
               console.log(data)
             },
             error:function(err){
