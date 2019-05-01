@@ -13,13 +13,40 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" rel="stylesheet"> 
-     
+   
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.min.css"/>
+
+    <!-- 
+        RTL version
+    -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.rtl.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.rtl.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.rtl.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.rtl.min.css"/>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
+    
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     
-     <script  defer src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyA6EoPjoxYiQOrqoOe1QlC598jxwSMkWrU&callback=initialize"  type="text/javascript"></script>
+    <script  defer src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyA6EoPjoxYiQOrqoOe1QlC598jxwSMkWrU&callback=initialize"  type="text/javascript"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   </head>
 
@@ -33,6 +60,7 @@
   
    
    <script>
+    AOS.init();
     if (typeof(Number.prototype.toRad) === "undefined") {
     Number.prototype.toRad = function() {
     return this * Math.PI / 180;
@@ -43,9 +71,11 @@
    function initialize(){
       geocoder = new google.maps.Geocoder();
        var input = document.getElementById('city');
-       // var input = $("#city");
+       var billing_city = document.getElementById('billing_city')
+      
        // create reference object for google map place autocomplete API.
        var autocomplete = new google.maps.places.Autocomplete(input);
+       var city_autocomplete = new google.maps.places.Autocomplete(billing_city);
    }
   
    // Calculate the distance and return the KM of two coordinates 
@@ -100,10 +130,44 @@
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
-  } 
+   }
+
+   function paymentMethodCodeAddress(){
+    var address = document.getElementById("billing_city").value;
+    var loc=[];
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+         navigator.geolocation.getCurrentPosition(function(location) {
+           // Compute the total distance of two coordinates and return the total Kilometer(KM)
+           // console.log(calculateDistance(location.coords.latitude, 
+           //                               location.coords.longitude, 
+           //                               loc[0]=results[0].geometry.location.lat(), 
+           //                               loc[1]=results[0].geometry.location.lng()))
+            $.ajax({
+              url: '/get_nearest_city',
+              type:"GET",
+              data:{
+                lat: loc[0]=results[0].geometry.location.lat(),
+                lng: loc[1]=results[0].geometry.location.lng()
+              },
+              dataType:"JSON",
+                success:function(d){
+                    console.log(d) 
+                },
+                error:function(err){
+                    console.log(err)
+                }
+            });
+         
+         }); 
+         return false;
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+   } 
+
+
   </script>
   </body>
 </html>
-<!-- 
-
-SELECT id,lat,lng, ((ACOS(SIN(11.5990317 * PI() / 180) * SIN(lat * PI() / 180) + COS(11.5990317 * PI() / 180) * COS(lat * PI() / 180) * COS((125.06084050000004 - lng) * PI() / 180)) * 180 / PI()) * 60 * 1.1515) AS distance FROM cities HAVING distance <='10' ORDER BY distance ASC LIMIT 0,10 -->
