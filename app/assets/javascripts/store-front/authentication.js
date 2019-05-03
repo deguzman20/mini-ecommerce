@@ -8,9 +8,13 @@ $(function(){
     $("#is-login-false").show();
   }
   
-  $("#logout").click(function(){
-    localStorage.setItem('auth_token',"");
-    document.location.reload();
+  $("#logout").click(function(e){
+    alertify.confirm('Confirm Title', 'Confirm Message', 
+    function(){     
+      localStorage.setItem('auth_token',"");
+       document.location.reload() }, 
+    function(){ });
+    e.preventDefault();
   });
 
   $("#login").click(function(e){
@@ -18,29 +22,43 @@ $(function(){
      var password = $("#pass").val();
      var dataString = "email="+email+"&password="+password;
      
-     $.ajax({
-       url:"/authentication/sign_in",
-       type:"GET",
-       data:dataString,
-       dataType:"JSON",
-        success:function(data){
-          if(data !== null){
-            localStorage.setItem('auth_token',data); 
-            alertify.set('notifier','position', 'top-left');
-            alertify.success('Sign In Succesfully');
-            setTimeout(function(){ 
-               document.location.reload(); 
-            }, 3000);
-          }
-          else {
-              alertify.set('notifier','position', 'top-left');
-              alertify.error('Incorrect Email and Password'); 
-          }
-        },
-        error:function(err){
-          console.log(err);	
-        }
-     });
+     if(email !=="" && password !==""){
+            $.ajax({
+               url:"/authentication/sign_in",
+               type:"GET",
+               data:dataString,
+               dataType:"JSON",
+                success:function(data){
+                  if(data !== null){
+                    localStorage.setItem('auth_token',data); 
+                    alertify.set('notifier','position', 'top-left');
+                    alertify.success('Sign In Succesfully');
+                    setTimeout(function(){ 
+                       document.location.reload(); 
+                    }, 3000);
+                  }
+                  else {
+                      alertify.set('notifier','position', 'top-left');
+                      alertify.error('Incorrect Email and Password'); 
+                  }
+                },
+                error:function(err){
+                  console.log(err); 
+                }
+             });    
+     }
+     else if(email != "" && password == ""){
+        alertify.set('notifier','position', 'top-left');
+        alertify.error("Password Can't be blank"); 
+     }
+     else if(email == "" && password != ""){
+        alertify.set('notifier','position', 'top-left');
+        alertify.error("Email Can't be blank"); 
+    }
+     else{
+        alertify.set('notifier','position', 'top-left');
+        alertify.error("Email and Password Can't be blank"); 
+     }
      e.preventDefault();
   });	
   $("#sign-up").click(function(){

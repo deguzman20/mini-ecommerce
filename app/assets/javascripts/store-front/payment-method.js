@@ -34,7 +34,8 @@ $(function(){
        var country = $("#country").val();
        var postal = $("#postal").val();
        var dataString = "email="+email+"&fname="+fname+"&lname="+lname+"&address="+address+"&apartment="+apartment+"&city="+city+"&country="+country+"&postal="+postal+"&is_save_info_checked="+$('#save_this_info').is(":checked");
-       codeAddress();  
+       if(email !== "" && fname !== "" && lname !== "" && address !== "" && city !== "" && country !== "" && postal !==""){
+            codeAddress();  
              setTimeout(function(){
                $.ajax({
                  url:"/continue_to_shipping_method",
@@ -50,8 +51,13 @@ $(function(){
                     console.log(err)
                   }
                });
-             }, 2000);
-               
+             }, 2000); 
+       }
+       else{
+         alertify.set('notifier','position', 'bottom-left');
+         alertify.error("All fields are required"); 
+       }
+              
    });
   
   $("#continue_to_payment_method").click(function(){
@@ -67,27 +73,34 @@ $(function(){
      var country = $("#country").val();
      var postal = $("#postal").val();
      var dataString = "email="+null+"&fname="+fname+"&lname="+lname+"&address="+address+"&apartment="+apartment+"&city="+city+"&country="+country+"&postal="+postal+"&standard_shipping="+false;
-
+     
       if($("#defaultUnchecked").is(':checked')){
         $("#billing-address").slideDown();
-        paymentMethodCodeAddress();
-             setTimeout(function(){
-               $.ajax({
-                 url:"/complete_order",
-                 type:"GET",
-                 data:dataString,
-                 dataType:"JSON",
-                  success:function(data){
-                    // if(data == "shipping address saved successfuly"){
-                    //   window.location.href = "/checkout_steps/shipping_method";
-                    // }
-                    console.log(data)
-                  },
-                  error:function(err){
-                    console.log(err)
-                  }
-               });
-             }, 2000);
+        if(fname !== "" &&  lname !=="" && address !=="" && city !=="" && country !=="" && postal !==""){
+               paymentMethodCodeAddress();
+               setTimeout(function(){
+                 $.ajax({
+                   url:"/complete_order",
+                   type:"GET",
+                   data:dataString,
+                   dataType:"JSON",
+                    success:function(data){
+                      // if(data == "shipping address saved successfuly"){
+                      //   window.location.href = "/checkout_steps/shipping_method";
+                      // }
+                      console.log(data)
+                    },
+                    error:function(err){
+                      console.log(err)
+                    }
+                 });
+               }, 2000);
+        }
+        else{
+          alertify.set('notifier','position', 'bottom-left');
+          alertify.error("All fields are required");
+          return false; 
+        }
       }
       else{
         $("#billing-address").slideUp();
