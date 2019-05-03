@@ -1,12 +1,13 @@
-<div class="col-md-12 mb-5">
-  <br>
-          <div class="card">
+<div class="container">
+ <div class="col-md-12 col-lg-12 mb-5">
+   <br>
+   <div class="card">
             <div class="card-body">
               <!-- Shopping Cart table -->
               <div class="table-responsive">
                 <table id="shopping" class="table product-table">
                   <!-- Table head -->
-                  <thead class="mdb-color thead-res lighten-5">
+                  <thead style="background-color:rgba(226,92,42,1);color:white">
                     <tr>
                       <th></th>
                       <th class="font-weight-bold">
@@ -44,11 +45,11 @@
                         </td>
                         <td class="center-on-small-only">
                           <div class="btn-group radio-group ml-2" data-toggle="buttons">
-                            <label class="btn btn-sm btn-primary btn-rounded waves-effect waves-light" id="quantity-minus-<%= cart_product.id %>">
+                            <label class="btn btn-sm btn-rounded waves-effect waves-light" id="quantity-minus-<%= cart_product.id %>" style="background-color:#2e363a;color:white;">
                               <input type="radio" name="options">—
                             </label>
                             <input type="text" value="<%= cart_product.quantity %>" id="quantity-<%= cart_product.id %>" class="form-control" disabled="disabled" style="width:40px"> 
-                            <label class="btn btn-sm btn-primary btn-rounded waves-effect waves-light active" id="quantity-plus-<%= cart_product.id %>">
+                            <label class="btn btn-sm btn-rounded waves-effect waves-light active" id="quantity-plus-<%= cart_product.id %>" style="background-color:#2e363a;color:white;">
                               <input type="radio" name="options">+
                             </label>
                           </div>
@@ -57,7 +58,7 @@
                           <strong><span id="amount-<%= cart_product.id %>"></span></strong>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove item" id="delete-<%= cart_product.id %>">X
+                          <button type="button" class="btn btn-sm waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove item" id="delete-<%= cart_product.id %>" style="background-color:#444b4f;color:white">X
                           </button>
                         </td>
                       </tr>
@@ -76,7 +77,7 @@
                         </td>
                         <td colspan="3" class="text-right">
                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light" id="checkout">Complete purchase
+                              <button type="button" class="btn btn-rounded waves-effect waves-light" id="checkout" style="background-color:#2e363a;color:white;">Complete purchase
                                <i class="fas fa-angle-right right"></i>
                                </button>
                               <button type="button" class="btn btn-rounded waves-effect waves-light" id="continue_shopping"><i class="fas fa-angle-left left"></i>Continue Shopping
@@ -90,8 +91,8 @@
               </div>
               <!-- /.Shopping Cart table -->
             </div>
-          </div>
-
-        </div>
+   </div>
+ </div>
+</div>
 
 <%= javascript_include_tag 'store-front/cart.js' %>

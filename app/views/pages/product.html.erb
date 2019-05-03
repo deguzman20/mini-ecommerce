@@ -45,12 +45,35 @@
   </ul>
   <div class="tab-content border-right border-bottom border-left rounded-bottom" id="myClassicTabContent">
     <div class="tab-pane fade active show" id="features" role="tabpanel" aria-labelledby="features-tab">
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
-        sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-        consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
-        dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
-        incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+     <div class="container">  
+       <div class="row">
+         <!-- Card Light -->
+         <% @features.each do |feature| %>
+           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">    
+              <div class="card">
+
+                <!-- Card image -->
+                <div class="view overlay">
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+
+                <!-- Card content -->
+                <div class="card-body" style="height:200px">
+                  <!-- Title -->
+                  <h4 class="card-title"><%= feature.first_text %></h4>
+                  <hr>
+                  <!-- Text -->
+                  <p class="card-text"><%= feature.second_text %></p>
+                </div>
+              </div>
+              <br>
+           </div>
+         <% end %>
+        <!-- Card Light -->
+       </div>
+     </div>
     </div>
     <div class="tab-pane fade" id="spec" role="tabpanel" aria-labelledby="spec-tab">
       <div class="row"> 
@@ -80,7 +103,7 @@
     <div class="tab-pane fade" id="charging" role="tabpanel" aria-labelledby="charging-tab-classic">
      <div class="row"> 
       <% @charging_capacities.each do |charging_capacity| %> 
-        <div class="col-lg-3 col-md-3 mb-lg-0 mb-4">
+        <div class="col-lg-4 col-md-4  col-sm-6 mb-lg-0 mb-4">
           <div class="card card-cascade wider">
                     <!-- Card image -->
                     <div class="view view-cascade overlay">
@@ -103,6 +126,7 @@
                       <h5 class="blue-text pb-2"><strong><%= charging_capacity.second_text %></strong></h5>
                     </div>
           </div>
+          <br>
         </div>
       <% end %>
       <br>

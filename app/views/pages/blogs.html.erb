@@ -32,7 +32,7 @@
 			        quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus
 			        et aut officiis debitis cum soluta nobis est eligendi placeat facere aut rerum.</p> -->
 			      <!-- Post data -->
-			      <p><%= blog.created_at %></p>
+			      <p><%= blog.created_at.strftime("%m/%d/%Y") %></p>
                   <%= link_to 'View', blog_path(blog.id), class: 'btn btn-primary btn-md' %>
 			    </div>
 			    <!-- Grid column -->

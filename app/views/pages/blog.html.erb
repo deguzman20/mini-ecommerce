@@ -16,7 +16,7 @@
 			    <div class="col-lg-7 col-xl-8">
 			     <br>	
 			      <h3 class="font-weight-bold mb-3"><strong><%= "#{@blog.name} - #{@blog.title}" %></strong></h3>
-			      <p><%= @blog.created_at %></p>
+			      <p><%= @blog.created_at.strftime("%m/%d/%Y") %></p>
 			    </div>
 			  </div>
 		  <!-- Grid row -->
