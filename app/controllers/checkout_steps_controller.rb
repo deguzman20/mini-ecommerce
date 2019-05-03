@@ -20,28 +20,28 @@ class CheckoutStepsController < ApplicationController
     if params[:is_save_info_checked] == 'true'
        customer_shipping_address = CustomerShippingAddress.new
        customer_shipping_address.email_address = params[:email]
-       customer_shipping_address.first_name = params[:fname]
-       customer_shipping_address.last_name = params[:lname]
-       customer_shipping_address.customer_id = $customer_id.to_i
-       customer_shipping_address.address     = params[:address]
-       customer_shipping_address.apartment   = params[:apartment]
-       customer_shipping_address.city        = params[:city]
-       customer_shipping_address.country     = params[:country] 
-       customer_shipping_address.postal_code = params[:postal]
-       customer_shipping_address.is_save_info = true
+       customer_shipping_address.first_name    = params[:fname]
+       customer_shipping_address.last_name     = params[:lname]
+       customer_shipping_address.customer_id   = $customer_id.to_i
+       customer_shipping_address.address       = params[:address]
+       customer_shipping_address.apartment     = params[:apartment]
+       customer_shipping_address.city          = params[:city]
+       customer_shipping_address.country       = params[:country] 
+       customer_shipping_address.postal_code   = params[:postal]
+       customer_shipping_address.is_save_info  = true
        render json: 'shipping address saved successfuly'.to_json  if customer_shipping_address.save!
     else
        customer_shipping_address = CustomerShippingAddress.new
        customer_shipping_address.email_address = params[:email]
-       customer_shipping_address.first_name = params[:fname]
-       customer_shipping_address.last_name = params[:lname]
-       customer_shipping_address.customer_id = $customer_id.to_i
-       customer_shipping_address.address     = params[:address]
-       customer_shipping_address.apartment   = params[:apartment]
-       customer_shipping_address.city        = params[:city]
-       customer_shipping_address.country     = params[:country] 
-       customer_shipping_address.postal_code = params[:postal]
-       customer_shipping_address.is_save_info = false
+       customer_shipping_address.first_name    = params[:fname]
+       customer_shipping_address.last_name     = params[:lname]
+       customer_shipping_address.customer_id   = $customer_id.to_i
+       customer_shipping_address.address       = params[:address]
+       customer_shipping_address.apartment     = params[:apartment]
+       customer_shipping_address.city          = params[:city]
+       customer_shipping_address.country       = params[:country] 
+       customer_shipping_address.postal_code   = params[:postal]
+       customer_shipping_address.is_save_info  = false
        render json: 'shipping address saved successfuly'.to_json  if customer_shipping_address.save!
     end 
   end 
@@ -49,14 +49,14 @@ class CheckoutStepsController < ApplicationController
   def complete_order
     if params[:standard_shipping] == 'false'
        customer_shipping_address = CustomerShippingAddress.new
-       customer_shipping_address.first_name = params[:fname]
-       customer_shipping_address.first_name = params[:lname]
-       customer_shipping_address.customer_id = $customer_id.to_i
-       customer_shipping_address.address = params[:address]
-       customer_shipping_address.apartment = params[:apartment]
-       customer_shipping_address.city = params[:city]
-       customer_shipping_address.country = params[:country]
-       customer_shipping_address.postal_code = params[:postal]
+       customer_shipping_address.first_name   = params[:fname]
+       customer_shipping_address.first_name   = params[:lname]
+       customer_shipping_address.customer_id  = $customer_id.to_i
+       customer_shipping_address.address      = params[:address]
+       customer_shipping_address.apartment    = params[:apartment]
+       customer_shipping_address.city         = params[:city]
+       customer_shipping_address.country      = params[:country]
+       customer_shipping_address.postal_code  = params[:postal]
        customer_shipping_address.is_save_info = true
        customer_shipping_address.save!
     end  
@@ -85,13 +85,13 @@ class CheckoutStepsController < ApplicationController
 
         #shipping_address = JSON.parse(payment.to_json)["payer"]["payer_info"]["shipping_address"]
         transaction_id = JSON.parse(payment.to_json)['transactions'][0]['related_resources'][0]['sale']['id']
-        customer_shipping_address = CustomerShippingAddress.find_by_customer_id($customer_id.to_i).last
+        customer_shipping_address = CustomerShippingAddress.where(customer_id: $customer_id.to_i)
         # create new order
         order = Order.new
         order.total = subtotal
         order.customer_id = $customer_id
         order.payment_order_status_id = 1
-        order.customer_shipping_address_id = customer_shipping_address.id
+        order.customer_shipping_address_id = customer_shipping_address.last.id
         order.paypal_transaction = transaction_id
           if order.save
            cart = Cart.find_by_customer_id($customer_id.to_i)
