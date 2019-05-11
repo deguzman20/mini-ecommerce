@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOrderStatuses < ActiveRecord::Migration[5.2]
   def change
     create_table :order_statuses do |t|

@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'authentication/sign_up'
   get 'authentication/sign_in'
   root 'pages#home'
@@ -23,7 +26,7 @@ Rails.application.routes.draw do
   get '/redirect_to_paypal', to: 'checkout_steps#redirect_to_paypal', as: :paypal
   get 'continue_to_shipping_method', to: 'checkout_steps#continue_to_shipping_method'
   get 'complete_order', to: 'checkout_steps#complete_order'
-  get 'get_nearest_city',to: 'checkout_steps#get_nearest_city'
-  resources :checkout_steps  , as: :checkout_steps
+  get 'get_nearest_city', to: 'checkout_steps#get_nearest_city'
+  resources :checkout_steps, as: :checkout_steps
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

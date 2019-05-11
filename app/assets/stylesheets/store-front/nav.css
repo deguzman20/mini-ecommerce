@@ -2,6 +2,13 @@ nav{
 	background-color: #31383d;
 }
 
+@media(min-width:200px) and (max-width:1000px){
+  #profile{
+  	position: relative;
+  	left:91%;
+  }	
+}
+
 .btn-sign-up{
 	background-color:rgb(227, 97, 46);
 }

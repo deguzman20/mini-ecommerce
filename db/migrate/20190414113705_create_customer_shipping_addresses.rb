@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCustomerShippingAddresses < ActiveRecord::Migration[5.2]
   def change
     create_table :customer_shipping_addresses do |t|

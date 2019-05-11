@@ -9,10 +9,10 @@ $(function(){
   }
   
   $("#logout").click(function(e){
-    alertify.confirm('Confirm Title', 'Confirm Message', 
+    alertify.confirm('', 'Are you sure you want to logout', 
     function(){     
       localStorage.setItem('auth_token',"");
-       document.location.reload() }, 
+       document.location.href ="/"; }, 
     function(){ });
     e.preventDefault();
   });

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTechnicalSpecificationImages < ActiveRecord::Migration[5.2]
   def change
     create_table :technical_specification_images do |t|
