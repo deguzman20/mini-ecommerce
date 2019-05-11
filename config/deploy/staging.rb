@@ -1,4 +1,9 @@
- server '134.209.64.224', user: 'powerlife', roles: %w{app db web}
+server '134.209.64.224', user: 'powerlife', roles: %w[app db web]
+# , password: fetch(:password)
+set :state, :staging
+set :branch, 'master'
+set :rails_env , :development
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.

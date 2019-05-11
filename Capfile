@@ -1,17 +1,13 @@
-require 'capistrano/rails'
-require 'capistrano/passenger'
-# If you are using rvm add these lines:
-require 'capistrano/rvm'
-set :rvm_type, :user
-# set :rvm_ruby_version, '2.6.1'
-
-
-
+#require 'capistrano/rails'
+#require 'capistrano/passenger'
 # Load DSL and set up stages
-r#equire "capistrano/setup"
+require "capistrano/setup"
 
 # Include default deployment tasks
-#require "capistrano/deploy"
+require "capistrano/deploy"
+require 'capistrano/rvm'
+set :rvm_type, :user
+set :rvm_ruby_version, '2.3.1'
 
 # Load the SCM plugin appropriate to your project:
 #

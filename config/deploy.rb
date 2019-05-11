@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 set :application, "power-life"
-set :repo_url, "/github.com/deguzman20/power-life-ecommerce.git"
+set :repo_url, "https://github.com/deguzman20/power-life-ecommerce.git"
 
 
 # Default branch is :master
