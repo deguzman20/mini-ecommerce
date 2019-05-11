@@ -1,3 +1,4 @@
+lock "~> 3.11.0"
 # #require 'capistrano/rails'
 # #require 'capistrano/passenger'
 # # Load DSL and set up stages
