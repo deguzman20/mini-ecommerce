@@ -76,13 +76,12 @@ install_plugin Capistrano::SCM::Git
 
 require 'capistrano/rvm'
 require 'capistrano/bundler'
-require 'capistrano/secrets_yml'
+# require 'capistrano/secrets_yml'
 require 'capistrano/database_yml'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/rails/db'
 require 'capistrano/puma'
-require 'slackistrano/capistrano'
 install_plugin Capistrano::Puma
 
 

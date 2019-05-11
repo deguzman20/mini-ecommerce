@@ -4,12 +4,11 @@ lock "~> 3.11.0"
 set :application, "power-life"
 set :repo_url, "https://github.com/deguzman20/power-life-ecommerce.git"
 
-
 set :puma_threads, [4, 16]
 set :puma_workers, 0
 
-set :use_sudo, false
-set :ssh_options, { :forward_agent => true, port: 8888  }
+#set :use_sudo, false
+# set :ssh_options, { :forward_agent => true, port: 8888  }
 
 set :stage, :development
 set :deploy_to, "/home/powerlife/public_html/power-life"
