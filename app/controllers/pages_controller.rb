@@ -95,15 +95,14 @@ class PagesController < ApplicationController
     cart_id = ''
     product_id = params[:product_id]
     carts = Cart.where(customer_id: $customer_id.to_i)
-    cart_product = CartProduct.where(cart_id: cart_id.to_i)
-                              .where(product_id: product_id)
+  
 
     carts.each do |cart|
       cart_id = cart.id
     end
     
-    if cart_product.present?
-      cart_product.each do |cart_product|
+    if CartProduct.where(cart_id: cart_id.to_i).where(product_id: product_id).present?
+      CartProduct.where(cart_id: cart_id.to_i).where(product_id: product_id).each do |cart_product|
         cp = CartProduct.find(cart_product.id)
         cp.quantity += params[:quantity].to_i
         cp.save!
