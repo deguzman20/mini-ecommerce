@@ -11,6 +11,14 @@ set :repo_url, "https://github.com/deguzman20/power-life-ecommerce.git"
 set :stage, :development
 set :deploy_to, "/home/powerlife/public_html/power-life"
 
+namespace :deploy do
+  desc "Recreate symlink"
+  task :resymlink, :roles => :app do
+    run "rm -f #{current_path} && ln -s #{release_path} #{current_path}"
+  end
+end
+
+after "deploy:create_symlink", "deploy:resymlink", "deploy:update_crontab"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
