@@ -12,13 +12,28 @@ set :stage, :development
 set :deploy_to, "/home/powerlife/public_html/power-life"
 
 namespace :deploy do
-  desc "Recreate symlink"
-  task :resymlink, :roles => :app do
-    run "rm -f #{current_path} && ln -s #{release_path} #{current_path}"
+
+  desc "Change HTML Symlink to relative path"
+  task :create_symlink do
+    on roles(:app) do
+
+        #execute "ls -l"
+        info "Modifying symlink to be relative"
+        execute "rm -d #{current_path}"
+
+        info "Deleted current symlink"
+        execute "cd ../power-life && ln -s ./releases/#{File.basename release_path} current"
+        info "Created relative current symlink"
+
+        execute "cd ~/../power-life && touch env.conf && echo 'live' >> env.conf"
+        info "Created environment file"
+
+    end
   end
+
 end
 
-after "deploy:create_symlink", "deploy:resymlink", "deploy:update_crontab"
+after :deploy, "deploy:create_symlink"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
