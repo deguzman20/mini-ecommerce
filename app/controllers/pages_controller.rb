@@ -17,7 +17,10 @@ class PagesController < ApplicationController
   end
 
   def get_local_storage
-    decoded_hash = JWT.decode(params[:auth_token], Rails.application.secrets.secret_key_base)
+    decoded_hash = JWT.decode(
+                    params[:auth_token], 
+                    Rails.application.secrets.secret_key_base
+                   )
     decoded_hash[0].each { |customer_id| $customer_id = customer_id[1] }
   end
 
@@ -34,6 +37,8 @@ class PagesController < ApplicationController
     order_product = OrderProduct.where(order_id: params[:id].to_i)
     render json: order_product
   end
+
+  def contact; end  
 
   def delete_cart_product
     cart_product = CartProduct.find(params[:id].to_i)
@@ -90,13 +95,15 @@ class PagesController < ApplicationController
     cart_id = ''
     product_id = params[:product_id]
     carts = Cart.where(customer_id: $customer_id.to_i)
+    cart_product = CartProduct.where(cart_id: cart_id.to_i)
+                              .where(product_id: product_id)
 
     carts.each do |cart|
       cart_id = cart.id
     end
-
-    if CartProduct.where(cart_id: cart_id.to_i).where(product_id: product_id).present?
-      CartProduct.where(cart_id: cart_id.to_i).where(product_id: product_id).each do |cart_product|
+    
+    if cart_product.present?
+      cart_product.each do |cart_product|
         cp = CartProduct.find(cart_product.id)
         cp.quantity += params[:quantity].to_i
         cp.save!

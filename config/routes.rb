@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'contact_us', to: 'pages#contact_us'
   get 'add_to_cart', to: 'pages#add_to_cart'
   get 'get_product', to: 'pages#get_product'
+  get 'contact', to: 'pages#contact', as: :contact
   get 'blogs', to: 'pages#blogs', as: :blogs
   get 'blog/:id', to: 'pages#blog', as: :blog
   get 'get_local_storage', to: 'pages#get_local_storage'

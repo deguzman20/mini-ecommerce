@@ -1,0 +1,73 @@
+/* extra small*/
+@media(min-width:300px) and (max-width:575px){
+    .h1-responsive {
+		font-size: 200%;
+	}
+
+	.h1-responsive + p {
+		font-size: 50%;
+	}
+}
+/* small */
+@media (min-width:576px) and (max-width:767px){
+    .h1-responsive {
+		font-size: 300%;
+	}
+
+	.h1-responsive + p {
+		font-size: 75%;
+	}
+}
+
+/*medium*/
+@media(min-width:768px) and (max-width:991px){
+  .h1-responsive {
+		font-size: 350%;
+	}
+
+	.h1-responsive + p {
+		font-size: 125%;
+	}
+
+   .carousel-caption{
+   	   position:absolute;
+   	   top:200px;
+    }  
+}
+
+/*large*/
+@media(min-width:992px) and (max-width:1199px){
+	.h1-responsive {
+		font-size: 350%;
+	}
+
+	.h1-responsive + p {
+		font-size: 125%;
+	}
+    
+   .carousel-caption{
+   	  position:absolute;
+   	  top:200px;
+    }   
+
+}
+
+/* extra large*/
+@media(min-width:1200px) and (max-width:2000px){
+	.h1-responsive {
+		font-size: 350%;
+	}
+
+	.h1-responsive + p {
+		font-size: 125%;
+	}
+
+	.carousel-caption{
+   	  position:absolute;
+   	  top:200px;
+    }  
+
+}
+
+   
+
