@@ -307,9 +307,10 @@ DEPENDENCIES
   better_errors
   bootsnap (>= 1.1.0)
   byebug
-  capistrano (~> 3.11.0)
+  capistrano (~> 3.10)
+  capistrano-bundler
   capistrano-passenger (~> 0.2.0)
-  capistrano-rails (~> 1.2)
+  capistrano-rails (~> 1.4)
   capistrano-rvm
   capybara (>= 2.15)
   carrierwave
