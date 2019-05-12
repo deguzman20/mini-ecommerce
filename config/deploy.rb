@@ -28,8 +28,8 @@ set :deploy_to, "/home/powerlife/public_html/power-life"
 # Default value for :pty is false
 # set :pty, true
 
-
-append :linked_files, "config/database.yml", "config/secrets.yml"
+ # "config/secrets.yml"
+append :linked_files, "config/database.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
