@@ -6,13 +6,10 @@ class CartProduct < ApplicationRecord
   include PayPal::SDK::REST
   belongs_to :cart, optional: true
   belongs_to :product
-  
-  # def self.graph_data(since = 30.days.ago)
-  #   CartProduct.group(:product_id).count.to_a
-  # end
+
 
   # def self.chart_type
-  #   'pie'
+  #   'bar'
   # end
 
   PayPal::SDK::REST.set_config(
