@@ -134,7 +134,10 @@ end
       pp 'customer information'
     when :shipping_method
       @customer_shipping_address = CustomerShippingAddress.where(customer_id: $customer_id).last
-      @additional = $additional
+      pp 'additional'
+      pp '----------------------'
+      pp @additional = $additional
+      pp '----------------------'
     when :payment_method
       @city = $city unless $city.nil?
       @customer_shipping_address = CustomerShippingAddress.where(customer_id: $customer_id).last
