@@ -3,7 +3,7 @@
 class CheckoutStepsController < ApplicationController
   include Wicked::Wizard
   steps :customer_information, :shipping_method, :payment_method
-
+  $customer_id
   def get_city(city)
     $city = city
   end
