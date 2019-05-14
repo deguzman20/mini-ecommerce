@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  
+   devise_for :users, controllers: {
+        sessions: 'users/sessions'
+      }
+
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'authentication/sign_up'
   get 'authentication/sign_in'
@@ -28,6 +34,8 @@ Rails.application.routes.draw do
   get 'continue_to_shipping_method', to: 'checkout_steps#continue_to_shipping_method'
   get 'complete_order', to: 'checkout_steps#complete_order'
   get 'get_nearest_city', to: 'checkout_steps#get_nearest_city'
+  get 'admin/login', to: 'admin_authentication#admin_login_page'
+  get 'admin_login_action', to: 'admin_authentication#admin_login_action'
   resources :checkout_steps, as: :checkout_steps
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
