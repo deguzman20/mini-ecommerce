@@ -1,0 +1,37 @@
+
+<div class="container">
+ <div class=""  tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!--Content-->
+    <div class="modal-content ">
+      <!--Header-->
+      <div class="modal-header" style="background-color: #2e363a">
+          <%= image_tag 'powerlife-logo-w.png', width:'200' %>
+      </div>
+      <!--Body-->
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+       <div class="modal-body mx-4">
+        <!--Body-->
+        <div class="md-form mb-5">
+       <!--    <input type="text" id="admin_username" class="form-control validate"> -->
+          <%= f.text_field :email, autofocus: true, class: 'form-control validate' %>
+          <label data-error="wrong" data-success="right" for="email">Email</label>
+        </div>
+
+        <div class="md-form pb-3">
+          <%= f.password_field :password, class: 'form-control validate' %>
+          <label data-error="wrong" data-success="right" for="admin_password">Password</label>
+        </div>
+
+        <div class="text-center mb-3">
+          <%= f.submit "Log in", class: 'btn btn-primary btn-block btn-rounded z-depth-1a text-white' %>
+        </div>
+        </div>
+       </div>
+    <% end %>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>  
+</div>
