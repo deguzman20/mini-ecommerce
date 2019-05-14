@@ -2,6 +2,7 @@ nav{
 	background-color: #31383d;
 }
 
+
 @media(min-width:200px) and (max-width:1000px){
   #profile{
   	position: relative;
