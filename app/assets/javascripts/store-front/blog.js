@@ -1,5 +1,5 @@
 $(function(){
- $("button").click(function(e){
+ $(".post-comment").click(function(e){
    var url = window.location.href;
    var last_char = url.charAt( url.length - 1 )
    var serialize_data = $("#leave_a_reply").serialize()+"&blog_id="+last_char;
