@@ -17,9 +17,6 @@ gem 'better_errors'
 # gem for paypal
 gem 'paypal-sdk-rest'
 
-# Use wicked to make your Rails controllers into step-by-step wizards.
-gem 'wicked'
-
 # gem for authentication
 gem 'jwt'
 
@@ -68,7 +65,10 @@ group :development, :test do
 end
 
 group :development do
-     
+  
+  # Use wicked to make your Rails controllers into step-by-step wizards.
+  gem 'wicked'
+    
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
