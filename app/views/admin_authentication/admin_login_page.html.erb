@@ -1,0 +1,39 @@
+<style type="text/css">
+	
+</style>
+<div class="container">
+ <div class=""  tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!--Content-->
+    <div class="modal-content ">
+      <!--Header-->
+      <div class="modal-header" style="background-color: #2e363a">
+          <%= image_tag 'powerlife-logo-w.png', width:'200' %>
+      </div>
+      <!--Body-->
+      <div class="modal-body mx-4">
+        <!--Body-->
+        <div class="md-form mb-5">
+          <input type="text" id="admin_username" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="admin_username">Username</label>
+        </div>
+
+        <div class="md-form pb-3">
+          <input type="password" id="admin_password" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="admin_password">Password</label>
+        </div>
+
+        <div class="text-center mb-3">
+          <button type="button" id="btn_login" class="btn btn-sign-up btn-block btn-rounded z-depth-1a text-white">Sign in</button>
+        </div>
+        </div>
+      </div>
+   
+    </div>
+    <!--/.Content-->
+  </div>
+</div>	
+</div>
+<%= javascript_include_tag 'store-front/admin_authentication.js' %>
+<%= stylesheet_link_tag 'store-front/nav.css' %>
