@@ -7,13 +7,11 @@ ruby '2.3.1'
 
 # gem 'rails_admin_charts'
 
-
+gem 'devise'
 gem 'rails_admin', '~> 1.3'
 gem 'rails_admin_charts'
 gem 'geocoder'
-
 gem 'rubocop'
-
 gem 'better_errors'
 
 # gem for paypal
