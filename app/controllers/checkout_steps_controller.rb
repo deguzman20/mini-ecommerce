@@ -7,8 +7,12 @@ class CheckoutStepsController < ApplicationController
   def get_city(city)
     $city = city
   end
-
+  
+  def additional_fee(additional,city_code,total_weight)
     $additional = additional
+    pp '-----------------'
+    pp $additional
+    pp '----------------'
     $city_code = city_code
     $total_weight = total_weight
   end
@@ -17,7 +21,7 @@ class CheckoutStepsController < ApplicationController
     decoded_hash = JWT.decode(params[:auth_token], Rails.application.secrets.secret_key_base)
     decoded_hash[0].each { |customer_id| $customer_id = customer_id[1] }
   end
-
+ 
   def continue_to_shipping_method
     if params[:is_save_info_checked] == 'true'
       customer_shipping_address = CustomerShippingAddress.new
@@ -71,7 +75,7 @@ class CheckoutStepsController < ApplicationController
     cart_products = CartProduct.where(cart_id: cart.id)
     base_url = request.base_url
     redirect_to cart_product.paypal_url($additional.to_i, cart_products, base_url)
-end
+  end
 
   def execute
     payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
@@ -490,8 +494,8 @@ end
       when total_weight >= 10_000 then additional = 309.59
       end
     end
-
     total = sub_total + additional
+    pp total.to_i
     additional_fee(additional, city_result, total_weight)
   end
 end

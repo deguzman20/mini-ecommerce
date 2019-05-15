@@ -315,9 +315,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   bcrypt (~> 3.1.7)
   better_errors
-  bootsnap
+  bootsnap (>= 1.1.2)
   byebug
   capistrano (~> 3.10)
   capistrano-bundler
