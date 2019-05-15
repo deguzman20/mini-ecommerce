@@ -10,7 +10,7 @@ class CheckoutStepsController < ApplicationController
   
   def additional_fee(additional,city_code,total_weight)
     $additional = additional
-    pp '-----------------'
+    pp '-------------==----'
     pp $additional
     pp '----------------'
     $city_code = city_code
