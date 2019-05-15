@@ -43,9 +43,9 @@ $(function(){
                  data:dataString,
                  dataType:"JSON",
                   success:function(data){
-                    if(data == "shipping address saved successfuly"){
-                      window.location.href = "/checkout_steps/shipping_method";
-                    }
+                    // if(data == "shipping address saved successfuly"){
+                    //   window.location.href = "/checkout_steps/shipping_method";
+                    // }
                   },
                   error:function(err){
                     console.log(err)
