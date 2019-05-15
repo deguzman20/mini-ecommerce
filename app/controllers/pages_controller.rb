@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
+  $customer_id
   def home; end
 
   def product
@@ -62,6 +63,7 @@ class PagesController < ApplicationController
 
   def cart
     cart = Cart.find_by_customer_id($customer_id.to_i)
+    pp cart
     @cart_products = CartProduct.where(cart_id: cart.id)
   end
 

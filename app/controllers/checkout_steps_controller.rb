@@ -8,7 +8,6 @@ class CheckoutStepsController < ApplicationController
     $city = city
   end
 
-  def additional_fee(additional, city_code, total_weight)
     $additional = additional
     $city_code = city_code
     $total_weight = total_weight
