@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.3.1'
 
 # gem 'rails_admin_charts'
-
+gem 'pry'
 gem 'devise'
 gem 'rails_admin', '~> 1.3'
 gem 'rails_admin_charts'

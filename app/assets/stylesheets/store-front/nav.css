@@ -2,12 +2,18 @@ nav{
 	background-color: #31383d;
 }
 
-
 @media(min-width:200px) and (max-width:1000px){
   #profile{
   	position: relative;
   	left:91%;
   }	
+}
+
+
+@media screen and (max-width:200px){
+  nav {
+  	height:100px;
+  } 	
 }
 
 .btn-sign-up{
