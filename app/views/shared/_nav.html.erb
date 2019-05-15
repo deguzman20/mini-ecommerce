@@ -35,6 +35,11 @@
          <li class="nav-item">
           <%= link_to 'Blog', blogs_path, class: 'nav-link' %>
          </li>
+         <li class="nav-item">
+          <a data-scroll href="#wall_of_power" class="nav-link">
+            Wall of Power
+          </a>
+         </li>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons" id="is-login-true">
           <li class="nav-item dropdown" id="profile">
@@ -133,6 +138,18 @@
       
   </div>
 </nav>
+<script>
+  $('a[href*="#"]').on('click', function(e) {
+  e.preventDefault()
 
+  $('html, body').animate(
+    {
+      scrollTop: $($(this).attr('href')).offset().top,
+    },
+    500,
+    'linear'
+  )
+})
+</script>
 <%= stylesheet_link_tag 'store-front/nav.css' %>
 <%= javascript_include_tag 'store-front/authentication.js' %>
