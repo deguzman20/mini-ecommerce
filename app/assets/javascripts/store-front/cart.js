@@ -152,7 +152,7 @@ $(function(){
     }
     else{
       alertify.set('notifier','position', 'bottom-left');
-      alertify.error('you need to login first');
+      alertify.error('you need to register first');
     } 
 	});
 });
