@@ -10,7 +10,7 @@ $(function(){
      dataType: 'JSON',
       success:function(data){
         console.log(data)
-         alertify.set('notifier','position', 'top-left');
+         alertify.set('notifier','position', 'bottom-left');
          alertify.success('Send succesfully');
       },
       error:function(err){
