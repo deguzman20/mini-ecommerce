@@ -2,21 +2,12 @@ nav{
 	background-color: #31383d;
 }
 
-/*@media(min-width:200px) and (max-width:1000px){
-  #profile{
-  	position: relative;
-  	left:91%;
-  }	
-}
-*/
-
 @media(min-width:991px) and (max-width:1056px){
   #nav-menu{
     position: relative;
     left:20%;
   }
 }
-
 
 @media(min-width:1057px) and (max-width:1108px){
   #nav-menu{
@@ -39,12 +30,6 @@ nav{
     left:40%;
   }
 }
-
-/*@media screen and (max-width:200px){
-  nav {
-  	height:100px;
-  } 	
-}*/
 
 .btn-sign-up{
 	background-color:rgb(227, 97, 46);
