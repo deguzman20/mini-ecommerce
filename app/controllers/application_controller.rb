@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
   end
 
   def announcements
-    Announcement.all
+    Announcement.order("date DESC")
   end
 
   def wall_of_power
-     WallOfPower.all
+     WallOfPower.order("created_at DESC")
   end
 
   helper_method :products
