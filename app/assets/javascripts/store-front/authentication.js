@@ -31,14 +31,14 @@ $(function(){
                 success:function(data){
                   if(data !== null){
                     localStorage.setItem('auth_token',data); 
-                    alertify.set('notifier','position', 'top-left');
+                    alertify.set('notifier','position', 'bottom-left');
                     alertify.success('Sign In Succesfully');
                     setTimeout(function(){ 
                        document.location.reload(); 
                     }, 3000);
                   }
                   else {
-                      alertify.set('notifier','position', 'top-left');
+                      alertify.set('notifier','position', 'bottom-left');
                       alertify.error('Incorrect Email and Password'); 
                   }
                 },
@@ -48,15 +48,15 @@ $(function(){
              });    
      }
      else if(email != "" && password == ""){
-        alertify.set('notifier','position', 'top-left');
+        alertify.set('notifier','position', 'bottom-left');
         alertify.error("Password Can't be blank"); 
      }
      else if(email == "" && password != ""){
-        alertify.set('notifier','position', 'top-left');
+        alertify.set('notifier','position', 'bottom-left');
         alertify.error("Email Can't be blank"); 
     }
      else{
-        alertify.set('notifier','position', 'top-left');
+        alertify.set('notifier','position', 'bottom-left');
         alertify.error("Email and Password Can't be blank"); 
      }
      e.preventDefault();
@@ -67,25 +67,32 @@ $(function(){
       var password = $("#password").val();
       var retype = $("#re-pass").val();
       var dataString = "fullname="+fullname+"&email="+email+"&password="+password;
-      if(password == retype){
-         $.ajax({
-           url: '/authentication/sign_up',
-           type:"GET",
-           data:dataString,
-           dataType:"JSON",
-            success:function(data){
-              $("#signUpModal").modal("hide");
-              alertify.set('notifier','position', 'top-left');
-              alertify.success('Sign Up succesfully'); 
-              console.log(data)
-            },
-            error:function(err){
-              console.log(err);	
-            }
-         });
+      if(fullname == "" && email == "" && password == "" && retype == ""){
+            alertify.set('notifier','position', 'bottom-left');
+            alertify.error('All fields are required');   
       }
       else{
-      	 alert("Password and Retype does'nt match");
+         if(password == retype){
+           $.ajax({
+             url: '/authentication/sign_up',
+             type:"GET",
+             data:dataString,
+             dataType:"JSON",
+              success:function(data){
+                $("#signUpModal").modal("hide");
+                alertify.set('notifier','position', 'bottom-left');
+                alertify.success('Sign Up succesfully'); 
+              
+              },
+              error:function(err){
+                console.log(err); 
+              }
+           });
+        }
+        else{
+           alertify.set('notifier','position', 'bottom-left');
+           alertify.error("Password and Retype does'nt match");   
+        }
       }
   });
 });
