@@ -22,4 +22,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-# power-life-ecommerce
+# Mini Ecommerce
